@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <ParseUI/ParseUI.h> 
 
-@interface ViewController : UIViewController
+// Implement both delegates
 
+@interface ViewController : UIViewController<PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end
 
