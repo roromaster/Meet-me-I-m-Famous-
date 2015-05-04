@@ -80,10 +80,7 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [NSException raise:NSGenericException format:@"Everything is ok. This is just a test crash."];
-    });
+   
 }
 
 // Sent to the delegate when the log in attempt fails.
