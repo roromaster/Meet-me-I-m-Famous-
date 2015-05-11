@@ -29,7 +29,6 @@
 		9466A8111AF65DEF00602EC9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466A8101AF65DEF00602EC9 /* QuartzCore.framework */; };
 		9466A8131AF65DFA00602EC9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466A8121AF65DFA00602EC9 /* Security.framework */; };
 		9466A8151AF65E0400602EC9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466A8141AF65E0400602EC9 /* Social.framework */; };
-		9466A8171AF65E0F00602EC9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466A8161AF65E0F00602EC9 /* StoreKit.framework */; };
 		9466A8191AF65E1B00602EC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466A8181AF65E1B00602EC9 /* SystemConfiguration.framework */; };
 		9466A81B1AF65E2A00602EC9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466A81A1AF65E2A00602EC9 /* libz.dylib */; };
 		9466A81D1AF65E3700602EC9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466A81C1AF65E3700602EC9 /* libsqlite3.dylib */; };
@@ -37,6 +36,8 @@
 		9466AABA1AF6956B00602EC9 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466AAB91AF6956B00602EC9 /* FBSDKLoginKit.framework */; };
 		9466AABC1AF6958A00602EC9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466AABB1AF6958A00602EC9 /* Bolts.framework */; };
 		9466AABE1AF6A93D00602EC9 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9466AABD1AF6A93D00602EC9 /* libstdc++.6.dylib */; };
+		94AB36AB1AF80EC500F2A4C6 /* PALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AB36AA1AF80EC500F2A4C6 /* PALoginViewController.m */; };
+		94AB36AE1AF80F6900F2A4C6 /* iPhone 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 94AB36AD1AF80F6900F2A4C6 /* iPhone 6.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +79,6 @@
 		9466A8101AF65DEF00602EC9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9466A8121AF65DFA00602EC9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9466A8141AF65E0400602EC9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		9466A8161AF65E0F00602EC9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9466A8181AF65E1B00602EC9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9466A81A1AF65E2A00602EC9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9466A81C1AF65E3700602EC9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -89,6 +89,9 @@
 		9466AAB91AF6956B00602EC9 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		9466AABB1AF6958A00602EC9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		9466AABD1AF6A93D00602EC9 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		94AB36AA1AF80EC500F2A4C6 /* PALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PALoginViewController.m; sourceTree = "<group>"; };
+		94AB36AC1AF80EE200F2A4C6 /* PALoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PALoginViewController.h; sourceTree = "<group>"; };
+		94AB36AD1AF80F6900F2A4C6 /* iPhone 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone 6.png"; path = "Images/iPhone 6.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +103,6 @@
 				9466A81D1AF65E3700602EC9 /* libsqlite3.dylib in Frameworks */,
 				9466A81B1AF65E2A00602EC9 /* libz.dylib in Frameworks */,
 				9466A8191AF65E1B00602EC9 /* SystemConfiguration.framework in Frameworks */,
-				9466A8171AF65E0F00602EC9 /* StoreKit.framework in Frameworks */,
 				9466AAB81AF694E900602EC9 /* FBSDKCoreKit.framework in Frameworks */,
 				9466A8151AF65E0400602EC9 /* Social.framework in Frameworks */,
 				9466A8131AF65DFA00602EC9 /* Security.framework in Frameworks */,
@@ -151,7 +153,6 @@
 				9466A7F91AF65D7100602EC9 /* Parse.framework */,
 				9466A7F81AF65D7100602EC9 /* Bolts.framework */,
 				9466A8181AF65E1B00602EC9 /* SystemConfiguration.framework */,
-				9466A8161AF65E0F00602EC9 /* StoreKit.framework */,
 				9466A8141AF65E0400602EC9 /* Social.framework */,
 				9466A8121AF65DFA00602EC9 /* Security.framework */,
 				9466A8101AF65DEF00602EC9 /* QuartzCore.framework */,
@@ -183,6 +184,8 @@
 				9466A7D01AF6537800602EC9 /* AppDelegate.m */,
 				9466A7D21AF6537800602EC9 /* ViewController.h */,
 				9466A7D31AF6537800602EC9 /* ViewController.m */,
+				94AB36AC1AF80EE200F2A4C6 /* PALoginViewController.h */,
+				94AB36AA1AF80EC500F2A4C6 /* PALoginViewController.m */,
 				9466A7D51AF6537900602EC9 /* Main.storyboard */,
 				9466A7D81AF6537900602EC9 /* Images.xcassets */,
 				9466A7DA1AF6537900602EC9 /* LaunchScreen.xib */,
@@ -194,6 +197,7 @@
 		9466A7CB1AF6537800602EC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94AB36AD1AF80F6900F2A4C6 /* iPhone 6.png */,
 				9466A7CC1AF6537800602EC9 /* Info.plist */,
 				9466A7CD1AF6537800602EC9 /* main.m */,
 			);
@@ -267,6 +271,11 @@
 					9466A7C71AF6537800602EC9 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 475ZG6KR4B;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					9466A7E01AF6537900602EC9 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -298,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94AB36AE1AF80F6900F2A4C6 /* iPhone 6.png in Resources */,
 				9466A7D71AF6537900602EC9 /* Main.storyboard in Resources */,
 				9466A7DC1AF6537900602EC9 /* LaunchScreen.xib in Resources */,
 				9466A7D91AF6537900602EC9 /* Images.xcassets in Resources */,
@@ -321,6 +331,7 @@
 				9466A7D41AF6537800602EC9 /* ViewController.m in Sources */,
 				9466A7D11AF6537800602EC9 /* AppDelegate.m in Sources */,
 				9466A7CE1AF6537800602EC9 /* main.m in Sources */,
+				94AB36AB1AF80EC500F2A4C6 /* PALoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +390,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -421,6 +433,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -445,6 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Rodolphe/Documents/FacebookSDK,
@@ -453,6 +467,7 @@
 				INFOPLIST_FILE = "Meet'me I'm Famous!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -461,6 +476,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Rodolphe/Documents/FacebookSDK,
@@ -469,6 +485,7 @@
 				INFOPLIST_FILE = "Meet'me I'm Famous!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -525,6 +542,7 @@
 				9466A7ED1AF6537900602EC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9466A7EE1AF6537900602EC9 /* Build configuration list for PBXNativeTarget "Meet'me I'm Famous!Tests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +551,7 @@
 				9466A7F01AF6537900602EC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -28,10 +28,18 @@
     
     [Parse setApplicationId:@"qGSyqxDJwOTAsEP0CiwT99OqFnNt8DJxpBu2ipjA"
                   clientKey:@"f4v191ReimPtb30twU8PV2V5FaM6Mn1hmFrXH9if"];
- 
     
+  //  [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions ];
+    
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
@@ -61,6 +69,17 @@
 }
 
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    currentInstallation.channels = @[ @"global" ];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

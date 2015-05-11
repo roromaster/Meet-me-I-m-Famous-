@@ -1,66 +1,62 @@
 //
-//  ViewController.m
+//  PALoginViewController.m
 //  Meet'me I'm Famous!
 //
-//  Created by Rodolphe on 03/05/2015.
+//  Created by Rodolphe on 04/05/2015.
 //  Copyright (c) 2015 Rodolphe Hugel. All rights reserved.
 //
 
-#import "ViewController.h"
-
-
+#import <Foundation/Foundation.h>
+#import <ParseUI/PFLogInViewController.h>
 #import <Parse/Parse.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ParseUI/ParseUI.h>
 
+#import "PALoginViewController.h"
 
 
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
+@implementation PALogInViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [PFUser logOut];
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+        [PFUser logOut];
+ //   self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Iphone 6.png"]];
+ //   [self.logInView setLogo:nil];
     if (![PFUser currentUser]) { // No user logged in
-         NSLog(@"USer NOT Logged In");
+        NSLog(@"USer NOT Logged In");
         // Create the log in view controller
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-        [logInViewController setDelegate:self]; // Set ourselves as the delegate
-        [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"public_profile",@"email", nil]];
-        [logInViewController setFields: PFLogInFieldsDefault| PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
+        self.delegate = self; // Set ourselves as the delegate
+        [self setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
+        [self setFields: PFLogInFieldsDefault| PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
         
         // Create the sign up view controller
         PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
         
         // Assign our sign up controller to be displayed from the login controller
-        [logInViewController setSignUpController:signUpViewController];
+        [self setSignUpController:signUpViewController];
         
-        // Present the log in view controller
-        [self presentViewController:logInViewController animated:YES completion:NULL];
     }
     else{
         NSLog(@"USer Logged In");
     }
 
+
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-  }
+    
+}
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+}
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -80,7 +76,7 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:NULL];
-   
+    
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -132,5 +128,6 @@
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
     NSLog(@"User dismissed the signUpViewController");
 }
+
 
 @end
