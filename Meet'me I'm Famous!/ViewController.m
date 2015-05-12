@@ -17,6 +17,7 @@
 
 
 
+
 @interface ViewController ()
 
 @end
@@ -79,6 +80,20 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+     startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+         if (!error) {
+             NSLog(@"fetched user:%@", result);
+             [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbid"];
+             [[PFUser currentUser] setObject:[result objectForKey:@"first_name"] forKey:@"firstname"];
+             [[PFUser currentUser] setObject:[result objectForKey:@"last_name"] forKey:@"lastname"];
+             [[PFUser currentUser] setObject:[result objectForKey:@"email"] forKey:@"email"];
+             [[PFUser currentUser] saveInBackground];
+         }
+     }];
+    
+
     [self dismissViewControllerAnimated:YES completion:NULL];
    
 }
