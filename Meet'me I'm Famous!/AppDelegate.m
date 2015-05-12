@@ -29,10 +29,11 @@
     [Parse setApplicationId:@"qGSyqxDJwOTAsEP0CiwT99OqFnNt8DJxpBu2ipjA"
                   clientKey:@"f4v191ReimPtb30twU8PV2V5FaM6Mn1hmFrXH9if"];
     
-  //  [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions ];
     
+
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
                                                     UIUserNotificationTypeSound);
@@ -75,6 +76,11 @@
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation.channels = @[ @"global" ];
     [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"%@",str);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
