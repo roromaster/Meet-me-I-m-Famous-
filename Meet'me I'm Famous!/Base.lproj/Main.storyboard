@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E11f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,11 +16,86 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfG-eV-Ojp">
+                                <rect key="frame" x="0.0" y="541" width="600" height="59"/>
+                                <color key="backgroundColor" red="0.1689012993" green="0.0097099929539999994" blue="0.99727392199999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="wUK-Xt-yBY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0L1-bK-ZhN"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhone 6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zmb-xw-sdm">
+                                <rect key="frame" x="484" y="41" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="5r0-SM-xUW"/>
+                                    <constraint firstAttribute="height" constant="100" id="LcZ-6M-v4X"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-ii-n99">
+                                <rect key="frame" x="150" y="80" width="301" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Iq6-Dv-ITQ"/>
+                                    <constraint firstAttribute="width" constant="301" id="VOs-Pb-9Q6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="250" y="69" width="301" height="43"/>
+                                </variation>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="QKP-ii-n99" secondAttribute="centerX" id="1CS-Pr-DuM"/>
+                            <constraint firstItem="QKP-ii-n99" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="4vJ-8K-eGS"/>
+                            <constraint firstAttribute="centerY" secondItem="QKP-ii-n99" secondAttribute="centerY" id="7pG-eu-NDH"/>
+                            <constraint firstAttribute="centerY" secondItem="QKP-ii-n99" secondAttribute="centerY" id="BSk-k6-exX"/>
+                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Gdi-kg-2Hq"/>
+                            <constraint firstItem="YfG-eV-Ojp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="J6P-uX-03a"/>
+                            <constraint firstAttribute="trailing" secondItem="YfG-eV-Ojp" secondAttribute="trailing" id="bEN-Vr-4LE"/>
+                            <constraint firstItem="YfG-eV-Ojp" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="fX8-KM-Ed1"/>
+                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="hZc-ka-eVl"/>
+                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="leading" secondItem="QKP-ii-n99" secondAttribute="trailing" constant="33" id="iB3-db-TJC">
+                                <variation key="heightClass=regular-widthClass=regular" constant="133"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1CS-Pr-DuM"/>
+                                <exclude reference="7pG-eu-NDH"/>
+                                <exclude reference="BSk-k6-exX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="1CS-Pr-DuM"/>
+                                <exclude reference="7pG-eu-NDH"/>
+                                <exclude reference="BSk-k6-exX"/>
+                                <exclude reference="iB3-db-TJC"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="YfG-eV-Ojp" id="YbQ-BJ-JfI"/>
+                        <outlet property="profileImage" destination="Zmb-xw-sdm" id="WxR-s6-JqF"/>
+                        <outlet property="pseudoLabel" destination="QKP-ii-n99" id="u81-27-fge"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="454.5" y="301.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iPhone 6.png" width="375" height="667"/>
+    </resources>
 </document>

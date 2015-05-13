@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [PFUser logOut];
+   
     
 }
 
@@ -40,10 +40,27 @@
     [super viewDidAppear:animated];
     if (![PFUser currentUser]) { // No user logged in
          NSLog(@"USer NOT Logged In");
+        [[self loginButton] setTitle:@"Login" forState:UIControlStateNormal];
+        // Create the log in view controller
+            }
+    else{
+        NSLog(@"USer Logged In");
+        [[self loginButton] setTitle:@"Logout" forState:UIControlStateNormal];
+
+    }
+
+    
+  }
+
+- (IBAction)loginButtonPressed:(UIButton *)sender
+{
+    if (![PFUser currentUser]) { // No user logged in
+        NSLog(@"USer NOT Logged In");
+        [[self loginButton] setTitle:@"Login" forState:UIControlStateNormal];
         // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
-        [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"public_profile",@"email", nil]];
+        [logInViewController setFacebookPermissions:[NSArray arrayWithObjects:@"public_profile",@"email",@"user_about_me" ,nil]];
         [logInViewController setFields: PFLogInFieldsDefault| PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsDismissButton];
         
         // Create the sign up view controller
@@ -55,13 +72,19 @@
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
+
     }
     else{
         NSLog(@"USer Logged In");
+        [[self loginButton] setTitle:@"Login" forState:UIControlStateNormal];
+         [PFUser logOut];
+        
     }
+    
 
     
-  }
+}
+
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -81,7 +104,7 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
 
-    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"first_name, last_name, picture.type(normal), email"}]
      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
          if (!error) {
              NSLog(@"fetched user:%@", result);
@@ -90,12 +113,18 @@
              [[PFUser currentUser] setObject:[result objectForKey:@"last_name"] forKey:@"lastname"];
              [[PFUser currentUser] setObject:[result objectForKey:@"email"] forKey:@"email"];
              [[PFUser currentUser] saveInBackground];
+             NSURL *pictureURL = [NSURL URLWithString:[[[result objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"]];
+        
+             self.profileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:pictureURL]];
+        //     = [UIImage imageWithData:[NSData dataWithContentsOfURL:pictureURL]];
+             // @{@"fields": @"first_name, last_name, picture.type(normal), email"}
+             
+
          }
      }];
-    
 
     [self dismissViewControllerAnimated:YES completion:NULL];
-   
+
 }
 
 // Sent to the delegate when the log in attempt fails.

@@ -13,6 +13,11 @@
 // Implement both delegates
 
 @interface ViewController : UIViewController<PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *pseudoLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+- (IBAction)loginButtonPressed:(UIButton *)sender;
 
 @end
 
