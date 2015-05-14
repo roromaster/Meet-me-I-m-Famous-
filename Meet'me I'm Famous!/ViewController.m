@@ -38,6 +38,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    self.profileImage.layer.cornerRadius = self.profileImage.layer.bounds.size.height/2;
+    self.profileImage.layer.masksToBounds = YES;
+    
+    self.profileImage.layer.borderWidth = 2.0f;
+    
+    self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    
     if (![PFUser currentUser]) { // No user logged in
          NSLog(@"USer NOT Logged In");
         [[self loginButton] setTitle:@"Login" forState:UIControlStateNormal];

@@ -42,21 +42,36 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-ii-n99">
                                 <rect key="frame" x="150" y="80" width="301" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Iq6-Dv-ITQ"/>
-                                    <constraint firstAttribute="width" constant="301" id="VOs-Pb-9Q6"/>
+                                    <constraint firstAttribute="height" constant="21" id="Iq6-Dv-ITQ">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="43"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="301" id="VOs-Pb-9Q6">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="429"/>
+                                    </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="250" y="69" width="301" height="43"/>
+                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="150" y="66" width="301" height="49"/>
+                                    <mask key="constraints">
+                                        <exclude reference="Iq6-Dv-ITQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="186" y="69" width="429" height="56"/>
+                                    <mask key="constraints">
+                                        <exclude reference="Iq6-Dv-ITQ"/>
+                                        <exclude reference="VOs-Pb-9Q6"/>
+                                    </mask>
                                 </variation>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12941177189350128" green="0.0" blue="0.39607846736907959" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="QKP-ii-n99" secondAttribute="centerX" id="1CS-Pr-DuM"/>
-                            <constraint firstItem="QKP-ii-n99" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="4vJ-8K-eGS"/>
+                            <constraint firstItem="QKP-ii-n99" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="4vJ-8K-eGS">
+                                <variation key="heightClass=regular-widthClass=regular" constant="117"/>
+                            </constraint>
                             <constraint firstAttribute="centerY" secondItem="QKP-ii-n99" secondAttribute="centerY" id="7pG-eu-NDH"/>
                             <constraint firstAttribute="centerY" secondItem="QKP-ii-n99" secondAttribute="centerY" id="BSk-k6-exX"/>
                             <constraint firstItem="Zmb-xw-sdm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Gdi-kg-2Hq"/>
@@ -70,14 +85,18 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="1CS-Pr-DuM"/>
                                 <exclude reference="7pG-eu-NDH"/>
                                 <exclude reference="BSk-k6-exX"/>
                             </mask>
                         </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="iB3-db-TJC"/>
+                            </mask>
+                        </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
-                                <include reference="1CS-Pr-DuM"/>
+                                <exclude reference="4vJ-8K-eGS"/>
                                 <exclude reference="7pG-eu-NDH"/>
                                 <exclude reference="BSk-k6-exX"/>
                                 <exclude reference="iB3-db-TJC"/>
@@ -92,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454.5" y="301.5"/>
+            <point key="canvasLocation" x="454" y="301.5"/>
         </scene>
     </scenes>
     <resources>
