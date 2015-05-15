@@ -32,14 +32,14 @@
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0L1-bK-ZhN"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhone 6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zmb-xw-sdm">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhone 6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zmb-xw-sdm">
                                 <rect key="frame" x="484" y="41" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="5r0-SM-xUW"/>
                                     <constraint firstAttribute="height" constant="100" id="LcZ-6M-v4X"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-ii-n99">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-ii-n99">
                                 <rect key="frame" x="150" y="80" width="301" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Iq6-Dv-ITQ">
@@ -52,7 +52,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
+                                <variation key="heightClass=regular" misplaced="YES">
                                     <rect key="frame" x="150" y="66" width="301" height="49"/>
                                     <mask key="constraints">
                                         <exclude reference="Iq6-Dv-ITQ"/>
@@ -66,9 +66,30 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mss-Ea-RBO">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="296" id="GUm-4L-caM"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="GUm-4L-caM"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="GUm-4L-caM"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="TsI-FH-Gsc"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.12941177189350128" green="0.0" blue="0.39607846736907959" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mss-Ea-RBO" secondAttribute="trailing" constant="34" id="1Nq-Mt-UaW"/>
+                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="top" secondItem="Zmb-xw-sdm" secondAttribute="bottom" constant="69" id="3Qq-2g-P4d"/>
                             <constraint firstItem="QKP-ii-n99" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="4vJ-8K-eGS">
                                 <variation key="heightClass=regular-widthClass=regular" constant="117"/>
                             </constraint>
@@ -82,15 +103,31 @@
                             <constraint firstItem="Zmb-xw-sdm" firstAttribute="leading" secondItem="QKP-ii-n99" secondAttribute="trailing" constant="33" id="iB3-db-TJC">
                                 <variation key="heightClass=regular-widthClass=regular" constant="133"/>
                             </constraint>
+                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="centerX" secondItem="QKP-ii-n99" secondAttribute="centerX" id="qIY-Um-Moc"/>
+                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="36" id="t5Q-r9-0Ya"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Mss-Ea-RBO"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="7pG-eu-NDH"/>
                                 <exclude reference="BSk-k6-exX"/>
+                                <exclude reference="1Nq-Mt-UaW"/>
+                                <exclude reference="3Qq-2g-P4d"/>
+                                <exclude reference="qIY-Um-Moc"/>
+                                <exclude reference="t5Q-r9-0Ya"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="Mss-Ea-RBO"/>
+                            </mask>
                             <mask key="constraints">
+                                <include reference="1Nq-Mt-UaW"/>
+                                <include reference="3Qq-2g-P4d"/>
+                                <include reference="qIY-Um-Moc"/>
+                                <include reference="t5Q-r9-0Ya"/>
                                 <exclude reference="iB3-db-TJC"/>
                             </mask>
                         </variation>
@@ -105,13 +142,14 @@
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="YfG-eV-Ojp" id="YbQ-BJ-JfI"/>
+                        <outlet property="mapView" destination="Mss-Ea-RBO" id="PXo-jF-WZB"/>
                         <outlet property="profileImage" destination="Zmb-xw-sdm" id="WxR-s6-JqF"/>
                         <outlet property="pseudoLabel" destination="QKP-ii-n99" id="u81-27-fge"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="454" y="301.5"/>
+            <point key="canvasLocation" x="-3" y="234"/>
         </scene>
     </scenes>
     <resources>

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9453A2581B06849A00C9045F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9453A2571B06849A00C9045F /* MapKit.framework */; };
+		9453A25B1B069AF800C9045F /* PAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9453A25A1B069AF800C9045F /* PAUser.m */; };
 		9466A7CE1AF6537800602EC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9466A7CD1AF6537800602EC9 /* main.m */; };
 		9466A7D11AF6537800602EC9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9466A7D01AF6537800602EC9 /* AppDelegate.m */; };
 		9466A7D41AF6537800602EC9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9466A7D31AF6537800602EC9 /* ViewController.m */; };
@@ -51,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9453A2571B06849A00C9045F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9453A2591B069AF800C9045F /* PAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAUser.h; sourceTree = "<group>"; };
+		9453A25A1B069AF800C9045F /* PAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAUser.m; sourceTree = "<group>"; };
 		9466A7C81AF6537800602EC9 /* Meet'me I'm Famous!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meet'me I'm Famous!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9466A7CC1AF6537800602EC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9466A7CD1AF6537800602EC9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 				9466A8001AF65D7C00602EC9 /* ParseCrashReporting.framework in Frameworks */,
 				9466A8011AF65D7C00602EC9 /* ParseFacebookUtils.framework in Frameworks */,
 				9466A8031AF65D7C00602EC9 /* ParseUI.framework in Frameworks */,
+				9453A2581B06849A00C9045F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +143,7 @@
 		9466A7BF1AF6537800602EC9 = {
 			isa = PBXGroup;
 			children = (
+				9453A2571B06849A00C9045F /* MapKit.framework */,
 				9466AABD1AF6A93D00602EC9 /* libstdc++.6.dylib */,
 				9466AABB1AF6958A00602EC9 /* Bolts.framework */,
 				9466AAB91AF6956B00602EC9 /* FBSDKLoginKit.framework */,
@@ -180,6 +187,8 @@
 		9466A7CA1AF6537800602EC9 /* Meet'me I'm Famous! */ = {
 			isa = PBXGroup;
 			children = (
+				9453A2591B069AF800C9045F /* PAUser.h */,
+				9453A25A1B069AF800C9045F /* PAUser.m */,
 				9466A7CF1AF6537800602EC9 /* AppDelegate.h */,
 				9466A7D01AF6537800602EC9 /* AppDelegate.m */,
 				9466A7D21AF6537800602EC9 /* ViewController.h */,
@@ -275,6 +284,9 @@
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
 						};
 					};
 					9466A7E01AF6537900602EC9 = {
@@ -332,6 +344,7 @@
 				9466A7D41AF6537800602EC9 /* ViewController.m in Sources */,
 				9466A7D11AF6537800602EC9 /* AppDelegate.m in Sources */,
 				9466A7CE1AF6537800602EC9 /* main.m in Sources */,
+				9453A25B1B069AF800C9045F /* PAUser.m in Sources */,
 				94AB36AB1AF80EC500F2A4C6 /* PALoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
