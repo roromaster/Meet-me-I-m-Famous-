@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E17e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -32,113 +33,54 @@
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0L1-bK-ZhN"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhone 6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zmb-xw-sdm">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iPhone 6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zmb-xw-sdm">
                                 <rect key="frame" x="484" y="41" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="5r0-SM-xUW"/>
-                                    <constraint firstAttribute="height" constant="100" id="LcZ-6M-v4X"/>
+                                    <constraint firstAttribute="width" secondItem="Zmb-xw-sdm" secondAttribute="height" multiplier="1:1" id="50y-JT-nWV"/>
+                                    <constraint firstAttribute="height" constant="100" id="QEd-y1-sb9"/>
+                                    <constraint firstAttribute="width" constant="100" id="l19-Rg-EI0"/>
                                 </constraints>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-ii-n99">
-                                <rect key="frame" x="150" y="80" width="301" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Iq6-Dv-ITQ">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="43"/>
-                                    </constraint>
-                                    <constraint firstAttribute="width" constant="301" id="VOs-Pb-9Q6">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="429"/>
-                                    </constraint>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="150" y="66" width="301" height="49"/>
-                                    <mask key="constraints">
-                                        <exclude reference="Iq6-Dv-ITQ"/>
-                                    </mask>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mss-Ea-RBO">
+                                <rect key="frame" x="35" y="169" width="541" height="239"/>
+                                <variation key="heightClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="50" y="143" width="501" height="167"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="186" y="69" width="429" height="56"/>
-                                    <mask key="constraints">
-                                        <exclude reference="Iq6-Dv-ITQ"/>
-                                        <exclude reference="VOs-Pb-9Q6"/>
-                                    </mask>
-                                </variation>
-                            </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mss-Ea-RBO">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="296" id="GUm-4L-caM"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="GUm-4L-caM"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="GUm-4L-caM"/>
-                                    </mask>
+                                <variation key="heightClass=compact-widthClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="127" y="169" width="546" height="138"/>
                                 </variation>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="TsI-FH-Gsc"/>
                                 </connections>
                             </mapView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKP-ii-n99">
+                                <rect key="frame" x="150" y="71" width="301" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="150" y="66" width="301" height="49"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="186" y="69" width="429" height="56"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.12941177189350128" green="0.0" blue="0.39607846736907959" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Mss-Ea-RBO" secondAttribute="trailing" constant="34" id="1Nq-Mt-UaW"/>
-                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="top" secondItem="Zmb-xw-sdm" secondAttribute="bottom" constant="69" id="3Qq-2g-P4d"/>
-                            <constraint firstItem="QKP-ii-n99" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="4vJ-8K-eGS">
-                                <variation key="heightClass=regular-widthClass=regular" constant="117"/>
-                            </constraint>
-                            <constraint firstAttribute="centerY" secondItem="QKP-ii-n99" secondAttribute="centerY" id="7pG-eu-NDH"/>
-                            <constraint firstAttribute="centerY" secondItem="QKP-ii-n99" secondAttribute="centerY" id="BSk-k6-exX"/>
-                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Gdi-kg-2Hq"/>
-                            <constraint firstItem="YfG-eV-Ojp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="J6P-uX-03a"/>
-                            <constraint firstAttribute="trailing" secondItem="YfG-eV-Ojp" secondAttribute="trailing" id="bEN-Vr-4LE"/>
-                            <constraint firstItem="YfG-eV-Ojp" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="fX8-KM-Ed1"/>
-                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="hZc-ka-eVl"/>
-                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="leading" secondItem="QKP-ii-n99" secondAttribute="trailing" constant="33" id="iB3-db-TJC">
-                                <variation key="heightClass=regular-widthClass=regular" constant="133"/>
-                            </constraint>
-                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="centerX" secondItem="QKP-ii-n99" secondAttribute="centerX" id="qIY-Um-Moc"/>
-                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="36" id="t5Q-r9-0Ya"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YfG-eV-Ojp" secondAttribute="bottom" id="2k2-oW-phk"/>
+                            <constraint firstItem="YfG-eV-Ojp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="C14-Ni-RRG"/>
+                            <constraint firstAttribute="trailing" secondItem="YfG-eV-Ojp" secondAttribute="trailing" id="JmL-ts-6eY"/>
+                            <constraint firstAttribute="trailing" secondItem="Mss-Ea-RBO" secondAttribute="trailing" id="KoO-us-dLU"/>
+                            <constraint firstAttribute="centerX" secondItem="QKP-ii-n99" secondAttribute="centerX" id="MjC-Pv-evv"/>
+                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="PrB-yB-cVs"/>
+                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="top" secondItem="Zmb-xw-sdm" secondAttribute="bottom" constant="28" id="Rek-hO-1Sf"/>
+                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="centerY" secondItem="QKP-ii-n99" secondAttribute="centerY" id="UdF-Cc-c93"/>
+                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="YB8-yu-aOH"/>
+                            <constraint firstItem="Mss-Ea-RBO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Z9V-qB-5Gf"/>
+                            <constraint firstItem="Zmb-xw-sdm" firstAttribute="leading" secondItem="QKP-ii-n99" secondAttribute="trailing" constant="10" id="kP0-bD-d6i"/>
+                            <constraint firstItem="YfG-eV-Ojp" firstAttribute="top" secondItem="Mss-Ea-RBO" secondAttribute="bottom" constant="8" symbolic="YES" id="zZT-9U-jdT"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Mss-Ea-RBO"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="7pG-eu-NDH"/>
-                                <exclude reference="BSk-k6-exX"/>
-                                <exclude reference="1Nq-Mt-UaW"/>
-                                <exclude reference="3Qq-2g-P4d"/>
-                                <exclude reference="qIY-Um-Moc"/>
-                                <exclude reference="t5Q-r9-0Ya"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular">
-                            <mask key="subviews">
-                                <include reference="Mss-Ea-RBO"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="1Nq-Mt-UaW"/>
-                                <include reference="3Qq-2g-P4d"/>
-                                <include reference="qIY-Um-Moc"/>
-                                <include reference="t5Q-r9-0Ya"/>
-                                <exclude reference="iB3-db-TJC"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=regular">
-                            <mask key="constraints">
-                                <exclude reference="4vJ-8K-eGS"/>
-                                <exclude reference="7pG-eu-NDH"/>
-                                <exclude reference="BSk-k6-exX"/>
-                                <exclude reference="iB3-db-TJC"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="YfG-eV-Ojp" id="YbQ-BJ-JfI"/>
@@ -149,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3" y="234"/>
+            <point key="canvasLocation" x="1" y="342"/>
         </scene>
     </scenes>
     <resources>

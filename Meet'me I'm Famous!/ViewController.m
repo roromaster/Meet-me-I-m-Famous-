@@ -30,6 +30,9 @@
 
 @property (nonatomic, assign) BOOL mapPinsPlaced;
 @property (nonatomic, assign) BOOL mapPannedSinceLocationUpdate;
+@property (nonatomic, assign) double mapZoomFactor;
+@property (nonatomic, assign) double searchArea;
+@property (nonatomic, assign) double searchLimit;
 
 @end
 
@@ -50,9 +53,12 @@
     
     // Do any additional setup after loading the view, typically from a nib.
    [self startStandardUpdates];
-    self.mapView.region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.332495f, -122.029095f),
-                                                 MKCoordinateSpanMake(0.008516f, 0.021801f));
-    
+    _searchArea = 2000000;
+    _searchLimit = 50;
+    if (_allUsers == nil)
+    {
+        _allUsers = [[NSMutableArray alloc] initWithCapacity:50];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,6 +147,7 @@
     
     [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"first_name, last_name, picture.type(normal), email"}]
      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+         
          if (!error) {
              NSLog(@"fetched user:%@", result);
              [[PFUser currentUser] setObject:[result objectForKey:@"id"] forKey:@"fbid"];
@@ -162,32 +169,90 @@
              [self.pseudoLabel setHidden:  false];
              
              // Update the map with new pins:
-             [self queryForAllUsersNearLocation:self.currentLocation withNearbyDistance:50];
+             [self queryForAllUsersNearLocation:self.currentLocation withNearbyDistance:_searchArea];
              // And update the existing pins to reflect any changes in filter distance:
-             [self updateUsersForLocation:self.currentLocation withNearbyDistance:50];
+             [self updateUsersForLocation:self.currentLocation withNearbyDistance:_searchArea];
 
-            
-             // If they panned the map since our last location update, don't recenter it.
-             if (!self.mapPannedSinceLocationUpdate) {
-                 // Set the map's region centered on their location at 2x filterDistance
-                 MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, 50 * 2.0f, 50 * 2.0f);
-                 
-                 [self.mapView setRegion:newRegion animated:YES];
-                 self.mapPannedSinceLocationUpdate = NO;
-             } else {
-                 // Just zoom to the new search radius (or maybe don't even do that?)
-                 MKCoordinateRegion currentRegion = self.mapView.region;
-                 MKCoordinateRegion newRegion = MKCoordinateRegionMakeWithDistance(currentRegion.center, 50 * 2.0f, 50 * 2.0f);
-                 
-                 BOOL oldMapPannedValue = self.mapPannedSinceLocationUpdate;
-                 [self.mapView setRegion:newRegion animated:YES];
-                 self.mapPannedSinceLocationUpdate = oldMapPannedValue;
+             PFQuery *query = [PFQuery queryWithClassName:@"Image"];
+             
+             // Query for posts sort of kind of near our current location.
+
+             [query whereKey:@"userID" equalTo:user];
+             [query whereKey:@"IsUserProfile" equalTo:[NSNumber numberWithBool:YES] ];
+             query.limit = 1;
+             
+             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                 if (!error)
+                 {
+                     if ([objects count])
+                     {
+                         //We Update :)
+                         PFObject *imgObject = [objects objectAtIndex:0];
+                         NSData *imageData = UIImagePNGRepresentation(self.profileImage.image);
+                         PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+                         [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                             if (!error) {
+                                 if (succeeded) {
+                                     imgObject[@"imageFile"]= imageFile;
+                                     [imgObject saveInBackground];
+                                 }
+                             } else {
+                                 // Handle error
+                             }
+                         }];
+
+                         
+                     }
+                     else{
+                         //We Create :)
+                         // Stitch together a postObject and send this async to Parse
+                         PFObject *imgObject = [PFObject objectWithClassName:@"Image"];
+                         imgObject[@"IsUser"] = [NSNumber numberWithBool:YES];
+                         imgObject[@"IsUserFavoriteSearch"] = [NSNumber numberWithBool:NO];
+                         imgObject[@"IsUserProfile"] = [NSNumber numberWithBool:YES];
+                         
+                         [imgObject setObject:user forKey:@"userID"];
+                         // Use PFACL to restrict future modifications to this object.
+                         PFACL *readOnlyACL = [PFACL ACL];
+                         [readOnlyACL setPublicReadAccess:YES];
+                         [readOnlyACL setPublicWriteAccess:NO];
+                         [readOnlyACL setWriteAccess:YES forUserId:[user objectId] ];
+                         imgObject.ACL = readOnlyACL;
+                         
+                         
+                         NSData *imageData = UIImagePNGRepresentation(self.profileImage.image);
+                         PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:imageData];
+                         [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                             if (!error) {
+                                 if (succeeded) {
+                                     imgObject[@"imageFile"]= imageFile;
+                                     
+                                    
+                                     [imgObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                                     {
+                                        PFRelation *relation = [user relationForKey:@"images"];
+                                        [relation addObject:imgObject];
+                                        [user saveInBackground];
+                                     }];
+                                 }
+                             } else {
+                                 // Handle error
+                             }        
+                         }];
+                     }
+                     
+                 }
+                 else{
+                     NSLog(@"Error while fetching Profile Image");
+                 }
              }
-
+              ];
+             
+             
          }
      }];
-    
 }
+
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
@@ -379,7 +444,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
-   // self.mapPannedSinceLocationUpdate = YES;
+    self.mapPannedSinceLocationUpdate = YES;
 }
 
 #pragma mark -
@@ -391,18 +456,12 @@
     if (currentLocation == nil) {
         NSLog(@"%s got a nil location!", __PRETTY_FUNCTION__);
     }
-    
-    // If no objects are loaded in memory, we look to the cache first to fill the table
-    // and then subsequently do a query against the network.
-    if ([self.allUsers count] == 0) {
-  //      query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    }
+
     
     // Query for posts sort of kind of near our current location.
     PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:self.currentLocation.coordinate.latitude longitude:self.currentLocation.coordinate.longitude];
-    [query whereKey:@"lastPosition" nearGeoPoint:point withinKilometers:1000];
- //   [query includeKey:@"user"];
-    query.limit = 50;
+    [query whereKey:@"lastPosition" nearGeoPoint:point withinKilometers:_searchArea];
+    query.limit = _searchLimit;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -441,11 +500,8 @@
                 
                 CLLocation *objectLocation = [[CLLocation alloc] initWithLatitude:userLoc.latitude
                                                                         longitude:userLoc.longitude];
-                // if this post is outside the filter distance, don't show the regular callout.
-               // CLLocationDistance distanceFromCurrent = [currentLocation distanceFromLocation:objectLocation];
-             //   [newPost setTitleAndSubtitleOutsideDistance:( distanceFromCurrent > nearbyDistance ? YES : NO )];
-                // Animate all pins after the initial load:
-               // newPost.animatesDrop = self.mapPinsPlaced;
+               
+                newUser.animatesDrop = self.mapPinsPlaced;
             }
             
             // At this point, newAllPosts contains a new list of post objects.
@@ -457,29 +513,57 @@
             [_allUsers addObjectsFromArray:newUsers];
             [_allUsers removeObjectsInArray:usersToRemove];
             
-//            self.mapPinsPlaced = YES;
+            self.mapPinsPlaced = YES;
+            
+            // If they panned the map since our last location update, don't recenter it.
+            if (!self.mapPannedSinceLocationUpdate) {
+                // Set the map's region centered on their location at 2x filterDistance
+                
+                MKMapRect zoomRect = MKMapRectNull;
+                for (id <MKAnnotation> annotation in _mapView.annotations)
+                {
+                    MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
+                    MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
+                    zoomRect = MKMapRectUnion(zoomRect, pointRect);
+                }
+                [_mapView setVisibleMapRect:zoomRect animated:YES];
+                self.mapPannedSinceLocationUpdate = NO;
+                
+                
+            } else {
+                // Just zoom to the new search radius (or maybe don't even do that?)
+                MKMapRect zoomRect = MKMapRectNull;
+                for (id <MKAnnotation> annotation in _mapView.annotations)
+                {
+                    MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
+                    MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.1, 0.1);
+                    zoomRect = MKMapRectUnion(zoomRect, pointRect);
+                }
+                [_mapView setVisibleMapRect:zoomRect animated:YES];
+                self.mapPannedSinceLocationUpdate = NO;
+                
+                
+                BOOL oldMapPannedValue = self.mapPannedSinceLocationUpdate;
+                
+                self.mapPannedSinceLocationUpdate = oldMapPannedValue;
+            }
+
         }
     }];
 }
 
 // When we update the search filter distance, we need to update our pins' titles to match.
 - (void)updateUsersForLocation:(CLLocation *)currentLocation withNearbyDistance:(CLLocationAccuracy) nearbyDistance {
-    for (PFUser *user in _allUsers) {
+    for (PAUser *user in _allUsers) {
         
-        PFGeoPoint *userLoc = [user objectForKey:@"lestPosition"];
+        PFGeoPoint *userLoc = [user.user objectForKey:@"lestPosition"];
         
         CLLocation *objectLocation = [[CLLocation alloc] initWithLatitude:userLoc.latitude
                                                                 longitude:userLoc.longitude];
+        [(MKPinAnnotationView *)[self.mapView viewForAnnotation:user] setPinColor:MKPinAnnotationColorRed];
         
-        // if this post is outside the filter distance, don't show the regular callout.
-        CLLocationDistance distanceFromCurrent = [currentLocation distanceFromLocation:objectLocation];
-        if (distanceFromCurrent > nearbyDistance) { // Outside search radius
-           // [post setTitleAndSubtitleOutsideDistance:YES];
-            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:user] setPinColor:MKPinAnnotationColorRed];
-        } else {
-            [(MKPinAnnotationView *)[self.mapView viewForAnnotation:user] setPinColor:MKPinAnnotationColorRed];
-        }
     }
+    
 }
 
 
